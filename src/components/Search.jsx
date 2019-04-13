@@ -1,7 +1,10 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom';
+import { observer } from 'mobx-react';
 
-class Search extends Component {
+import { getRepos, getOrgs, getUserData, getOrgData } from "../github-api"
+
+const Search = observer(class Search extends Component {
 
   constructor(props) {
     super(props);
@@ -13,12 +16,23 @@ class Search extends Component {
 
   handleFormSubmit = event => {
     event.preventDefault();
-    this.props.history.push(`/info/${this.state.username}`);
 
-    this.props.showInfo(this.state.username)
+
+    getUserData(this.state.username)
+      .then(userInfo => {
+        this.props.store.user.setUser({
+          username: userInfo.login,
+          name: userInfo.name,
+          avatar: userInfo.avatar_url,
+          url: userInfo.url,
+          location: userInfo.location
+        })
+        this.props.history.push(`/info/${this.props.store.user.username}`);
+      })
+
+
 
     this.setState({ username: "" })
-
   }
 
   handleInputChange = event => {
@@ -40,7 +54,7 @@ class Search extends Component {
       </div>
     )
   }
-}
+})
 
 export default withRouter(Search);
 

@@ -1,7 +1,10 @@
 import React, { Component } from 'react'
 import Org from './Org';
 
-export default class Orgs extends Component {
+import { observer } from 'mobx-react';
+
+
+const Orgs = observer(class Orgs extends Component {
   render() {
     return (
       <div>
@@ -16,4 +19,7 @@ export default class Orgs extends Component {
       </div>
     )
   }
-}
+})
+
+
+export default Orgs
