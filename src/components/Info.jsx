@@ -5,8 +5,9 @@ import { getRepos, getOrgs, getUserData, getOrgData } from "../github-api"
 
 import Repos from './Repos';
 import Orgs from './Orgs';
+import UserInfo from './UserInfo';
 
-const Info = observer(class UserInfo extends Component {
+const Info = observer(class Info extends Component {
 
   constructor(props) {
     super(props);
@@ -15,6 +16,20 @@ const Info = observer(class UserInfo extends Component {
   }
 
   getData() {
+
+    getUserData(this.props.match.params.username)
+      .then(data => {
+        this.props.store.user.setUser({
+          username: data.login,
+          name: data.name,
+          avatar: data.avatar_url,
+          url: data.html_url,
+          location: data.location
+        })
+        console.log(this.props.store.user.name)
+      })
+      .catch(error => console.log(error))
+
     getRepos(this.props.match.params.username)
       .then(repos => {
         repos.forEach(repo => {
@@ -26,6 +41,7 @@ const Info = observer(class UserInfo extends Component {
         });
       })
       .catch(error => console.log(error))
+
     getOrgs(this.props.match.params.username)
       .then(orgs => {
         orgs.forEach(org => {
@@ -49,8 +65,8 @@ const Info = observer(class UserInfo extends Component {
     return (
       <div>
 
+        <UserInfo info={this.props.store.user} />
         <Repos repos={this.props.store.repos} />
-
         <Orgs orgs={this.props.store.orgs} />
       </div>
 
