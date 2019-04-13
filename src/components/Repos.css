@@ -1,0 +1,15 @@
+.repos-container{
+  padding: 30px 20px;
+  overflow-y: scroll;
+  height: 70vh;
+}
+
+.repos-container h2{
+  margin-bottom: 20px;
+}
+
+.repos-list{
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}

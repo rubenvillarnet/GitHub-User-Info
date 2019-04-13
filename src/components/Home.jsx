@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-
 import Search from './Search';
 import { observer } from 'mobx-react';
 

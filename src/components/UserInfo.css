@@ -1,0 +1,11 @@
+.user-info{
+  padding: 30px 20px;
+  display: flex;
+}
+
+
+.user-info .gh-avatar{
+  height: 75px;
+  width: 75px;
+  margin-right: 20px;
+}

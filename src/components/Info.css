@@ -1,0 +1,30 @@
+.info-container{
+  background-color: rgb(250, 250, 250);
+  height: 100vh;
+  max-width: 1080px;
+  margin: auto;
+  margin-top: 40px;
+}
+
+.info-header{
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.info-header .search-form{
+  width: 400px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+
+.info-columns{
+  display: flex;
+  justify-content: space-between;
+}
+
+.info-left, .info-right{
+  width: 48%;
+}

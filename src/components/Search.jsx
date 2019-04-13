@@ -1,56 +1,29 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom';
 import { observer } from 'mobx-react';
+import Typography from '@material-ui/core/Typography';
+import { Paper } from '@material-ui/core';
 
-import { getRepos, getOrgs, getUserData, getOrgData } from "../github-api"
+import "./Search.css"
+import SearchForm from './SearchForm';
+
 
 const Search = observer(class Search extends Component {
 
-  constructor(props) {
-    super(props);
 
-    this.state = {
-      username: ""
-    }
-  }
-
-  handleFormSubmit = event => {
-    event.preventDefault();
-
-
-    getUserData(this.state.username)
-      .then(userInfo => {
-        this.props.store.user.setUser({
-          username: userInfo.login,
-          name: userInfo.name,
-          avatar: userInfo.avatar_url,
-          url: userInfo.url,
-          location: userInfo.location
-        })
-        this.props.history.push(`/info/${this.props.store.user.username}`);
-      })
-
-
-
-    this.setState({ username: "" })
-  }
-
-  handleInputChange = event => {
-    this.setState({
-      username: event.target.value
-    })
-  }
 
   render() {
     return (
-      <div>
-        <h1>GitHub Users info</h1>
-        <p>Enter a Github username in order to see his repos and organizations</p>
-        <form onSubmit={this.handleFormSubmit}>
-          <label htmlFor="name">Username</label>
-          <input id="name" type="text" value={this.state.username} onChange={this.handleInputChange} />
-          <input type="submit" value="Submit" />
-        </form>
+      <div className="home-container">
+        <Paper className="login-container">
+          <Typography component="h1" variant="h5" className="title">
+            GitHub Users info
+        </Typography>
+          <Typography variant="body1">
+            Enter a Github username to view his repos and organizations
+          </Typography>
+          <SearchForm store={this.props.store} />
+        </Paper>
       </div>
     )
   }

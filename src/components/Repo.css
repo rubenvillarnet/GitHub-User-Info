@@ -1,0 +1,15 @@
+.repo-card{
+  padding: 15px 0;
+  width: 48%;
+  margin-bottom: 10px;
+}
+
+.repo-car .card-header{
+  background-color: #f50057;
+  color: #fff;
+  padding: 15px 10px;
+}
+
+.repo-car .card-content{
+  padding: 15px 10px;
+}

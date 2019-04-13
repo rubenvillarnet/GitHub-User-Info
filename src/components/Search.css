@@ -1,0 +1,30 @@
+.home-container{
+  background-color: rgb(250, 250, 250);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-container{
+  width: 400px;
+  padding: 50px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.login-container form{
+  width: 100%;
+}
+
+.login-container  h1{
+  margin-bottom: 20px;
+}
+
+.login-container .submit-button{
+  margin-top: 20px;
+}
+
+
+

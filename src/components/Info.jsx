@@ -6,6 +6,10 @@ import { getRepos, getOrgs, getUserData, getOrgData } from "../github-api"
 import Repos from './Repos';
 import Orgs from './Orgs';
 import UserInfo from './UserInfo';
+import SearchForm from "./SearchForm"
+
+import "./Info.css"
+import { Typography } from '@material-ui/core';
 
 const Info = observer(class Info extends Component {
 
@@ -26,7 +30,6 @@ const Info = observer(class Info extends Component {
           url: data.html_url,
           location: data.location
         })
-        console.log(this.props.store.user.name)
       })
       .catch(error => console.log(error))
 
@@ -63,11 +66,24 @@ const Info = observer(class Info extends Component {
 
   render() {
     return (
-      <div>
+      <div className="info-container">
+        <div className="info-header">
+          <SearchForm store={this.props.store} />
 
-        <UserInfo info={this.props.store.user} />
-        <Repos repos={this.props.store.repos} />
-        <Orgs orgs={this.props.store.orgs} />
+          <Typography component="h1" variant="h3">
+            GitHub user info
+        </Typography>
+        </div>
+        <div className="info-columns">
+          <div className="info-left">
+            <Repos repos={this.props.store.repos} />
+          </div>
+          <div className="info-right">
+            <UserInfo info={this.props.store.user} totalRepos={this.props.store.reposCount} totalOrgs={this.props.store.orgsCount} />
+            <Orgs orgs={this.props.store.orgs} />
+          </div>
+
+        </div>
       </div>
 
     )
