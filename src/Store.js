@@ -59,6 +59,10 @@ const RootStore = types
     addRepo(repo) {
       self.repos.push(repo)
     },
+    clearAll() {
+      self.repos = []
+      self.orgs = []
+    },
     addOrg(org) {
       self.orgs.push(org)
     },

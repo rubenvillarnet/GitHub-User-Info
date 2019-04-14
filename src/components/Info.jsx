@@ -21,8 +21,17 @@ const Info = observer(class Info extends Component {
     this.props.store.setLoadStatus("repos", false)
     this.props.store.setLoadStatus("orgs", false)
     this.props.store.setLoadStatus("userData", false)
+  }
 
+  componentDidUpdate(prevProps) {
 
+    if (prevProps.location.pathname !== this.props.location.pathname) {
+      this.props.store.clearAll()
+      this.props.store.setLoadStatus("repos", false)
+      this.props.store.setLoadStatus("orgs", false)
+      this.props.store.setLoadStatus("userData", false)
+      this.getData()
+    }
   }
 
   getData() {
