@@ -33,11 +33,19 @@ const Org = types
     repos: types.number
   })
 
+const Loaded = types
+  .model({
+    userData: types.boolean,
+    repos: types.boolean,
+    orgs: types.boolean
+  })
+
 const RootStore = types
   .model({
+    loaded: Loaded,
     user: User,
     repos: types.array(Repo),
-    orgs: types.array(Org)
+    orgs: types.array(Org),
   })
   .views(self => ({
     get reposCount() {
@@ -53,6 +61,9 @@ const RootStore = types
     },
     addOrg(org) {
       self.orgs.push(org)
+    },
+    setLoadStatus(data, status) {
+      self.loaded[data] = status
     }
   }))
 

@@ -23,7 +23,12 @@ const App = observer(class App extends Component {
       avatar: ""
     },
     repos: [],
-    orgs: []
+    orgs: [],
+    loaded: {
+      userData: false,
+      repos: false,
+      orgs: false
+    }
   })
 
   render() {

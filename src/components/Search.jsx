@@ -19,7 +19,9 @@ const Search = observer(class Search extends Component {
           <Typography component="h1" variant="h5" className="title">
             GitHub Users info
         </Typography>
-          <Typography variant="body1">
+          <Typography
+            variant="body1"
+            align="center">
             Enter a Github username to view his repos and organizations
           </Typography>
           <SearchForm store={this.props.store} />

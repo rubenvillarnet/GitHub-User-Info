@@ -12,7 +12,7 @@ export default class Repo extends Component {
             {this.props.repo.name}
           </Typography>
         </div>
-        <div className="car-content">
+        <div className="card-content">
           <Typography variant="body1">
             {this.props.repo.language}
           </Typography>

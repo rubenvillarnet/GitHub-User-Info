@@ -1,5 +1,8 @@
 .user-info{
   padding: 30px 20px;
+}
+
+.user-info-container{
   display: flex;
 }
 

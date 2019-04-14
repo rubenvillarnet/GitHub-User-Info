@@ -21,6 +21,7 @@ function getUserData(username) {
   const url = `${BASE_URL}/users/${username}`
   return axios.get(url)
     .then(response => response.data)
+    .catch(error => console.log(error))
 }
 
 function getOrgData(org) {

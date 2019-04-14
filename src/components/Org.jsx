@@ -10,7 +10,7 @@ export default class Org extends Component {
           {this.props.org.name}
         </Typography>
         <Typography>
-          {this.props.org.repos} {this.props.org.repos === 1 ? "repository" : "repository"}
+          {this.props.org.repos} {this.props.org.repos === 1 ? "repository" : "repositories"}
         </Typography>
         <Typography>
           <a href={this.props.org.url} target="_blank" rel="noopener noreferrer" >Open in GitHub</a>

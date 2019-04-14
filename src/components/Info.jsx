@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { observer } from 'mobx-react';
 
-import { getRepos, getOrgs, getUserData, getOrgData } from "../github-api"
+import { getUserData, getOrgs, getOrgData, getRepos } from "../github-api"
 
 import Repos from './Repos';
 import Orgs from './Orgs';
@@ -15,7 +15,13 @@ const Info = observer(class Info extends Component {
 
   constructor(props) {
     super(props);
+
     this.getData()
+
+    this.props.store.setLoadStatus("repos", false)
+    this.props.store.setLoadStatus("orgs", false)
+    this.props.store.setLoadStatus("userData", false)
+
 
   }
 
@@ -23,13 +29,16 @@ const Info = observer(class Info extends Component {
 
     getUserData(this.props.match.params.username)
       .then(data => {
+        console.log()
         this.props.store.user.setUser({
           username: data.login,
-          name: data.name,
+          name: data.name === null ? "" : data.name,
           avatar: data.avatar_url,
           url: data.html_url,
-          location: data.location
+          location: data.location === null ? "not defined" : data.location
         })
+        this.props.store.setLoadStatus("userData", true)
+
       })
       .catch(error => console.log(error))
 
@@ -42,13 +51,14 @@ const Info = observer(class Info extends Component {
             language: repo.language === null ? "undefined" : repo.language
           })
         });
+
+        this.props.store.setLoadStatus("repos", true)
       })
       .catch(error => console.log(error))
 
     getOrgs(this.props.match.params.username)
       .then(orgs => {
         orgs.forEach(org => {
-
           getOrgData(org.login)
             .then(orgData => {
               this.props.store.addOrg({
@@ -57,8 +67,8 @@ const Info = observer(class Info extends Component {
                 repos: orgData.public_repos
               })
             })
-
         });
+        this.props.store.setLoadStatus("orgs", true)
       })
       .catch(error => console.log(error))
   }
@@ -76,11 +86,11 @@ const Info = observer(class Info extends Component {
         </div>
         <div className="info-columns">
           <div className="info-left">
-            <Repos repos={this.props.store.repos} />
+            <Repos store={this.props.store} />
           </div>
           <div className="info-right">
-            <UserInfo info={this.props.store.user} totalRepos={this.props.store.reposCount} totalOrgs={this.props.store.orgsCount} />
-            <Orgs orgs={this.props.store.orgs} />
+            <UserInfo store={this.props.store} />
+            <Orgs store={this.props.store} />
           </div>
 
         </div>
