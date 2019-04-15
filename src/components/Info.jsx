@@ -18,18 +18,14 @@ const Info = observer(class Info extends Component {
 
     this.getData()
 
-    this.props.store.setLoadStatus("repos", false)
-    this.props.store.setLoadStatus("orgs", false)
-    this.props.store.setLoadStatus("userData", false)
+    this.props.store.clearLoadStatus()
   }
 
   componentDidUpdate(prevProps) {
 
     if (prevProps.location.pathname !== this.props.location.pathname) {
       this.props.store.clearAll()
-      this.props.store.setLoadStatus("repos", false)
-      this.props.store.setLoadStatus("orgs", false)
-      this.props.store.setLoadStatus("userData", false)
+      this.props.store.clearLoadStatus()
       this.getData()
     }
   }
@@ -38,13 +34,13 @@ const Info = observer(class Info extends Component {
 
     getUserData(this.props.match.params.username)
       .then(data => {
-        console.log()
+        const { login, name, avatar_url, html_url, location } = data
         this.props.store.user.setUser({
-          username: data.login,
-          name: data.name === null ? "" : data.name,
-          avatar: data.avatar_url,
-          url: data.html_url,
-          location: data.location === null ? "not defined" : data.location
+          username: login,
+          name: name === null ? "" : name,
+          avatar: avatar_url,
+          url: html_url,
+          location: location === null ? "not defined" : location
         })
         this.props.store.setLoadStatus("userData", true)
 
@@ -54,10 +50,11 @@ const Info = observer(class Info extends Component {
     getRepos(this.props.match.params.username)
       .then(repos => {
         repos.forEach(repo => {
+          const { name, html_url, language } = repo
           this.props.store.addRepo({
-            name: repo.name,
-            url: repo.html_url,
-            language: repo.language === null ? "undefined" : repo.language
+            name: name,
+            url: html_url,
+            language: language === null ? "undefined" : language
           })
         });
 

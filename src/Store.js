@@ -68,6 +68,11 @@ const RootStore = types
     },
     setLoadStatus(data, status) {
       self.loaded[data] = status
+    },
+    clearLoadStatus() {
+      self.loaded.repos = false
+      self.loaded.orgs = false
+      self.loaded.userData = false
     }
   }))
 

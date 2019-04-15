@@ -5,19 +5,20 @@ import "./Repo.css"
 
 export default class Repo extends Component {
   render() {
+    const { name, language, url } = this.props.repo
     return (
       <Card className="repo-card">
         <div className="card-header">
           <Typography component="h5" variant="h6">
-            {this.props.repo.name}
+            {name}
           </Typography>
         </div>
         <div className="card-content">
           <Typography variant="body1">
-            {this.props.repo.language}
+            {language}
           </Typography>
           <Typography variant="body2">
-            <a href={this.props.repo.url} target="_blank" rel="noopener noreferrer" >Open in GitHub</a>
+            <a href={url} target="_blank" rel="noopener noreferrer" >Open in GitHub</a>
           </Typography>
         </div>
       </Card>
