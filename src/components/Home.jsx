@@ -7,7 +7,7 @@ const Home = observer(class Home extends Component {
 
   render() {
     return (
-      <div className="App" >
+      <div>
         <Search showInfo={this.showInfo} store={this.props.store} />
       </div>
     );

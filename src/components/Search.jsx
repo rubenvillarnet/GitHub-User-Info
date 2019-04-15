@@ -17,7 +17,7 @@ const Search = observer(class Search extends Component {
       <div className="home-container">
         <Paper className="login-container">
           <Typography component="h1" variant="h5" className="title">
-            GitHub Users info
+            GitHub Users Info
         </Typography>
           <Typography
             variant="body1"

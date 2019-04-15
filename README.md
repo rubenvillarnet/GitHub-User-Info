@@ -1,68 +1,58 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+# Github Users Info
 
-In the project directory, you can run:
+A React based app that displays a user's repositories and organizations in Github. Simply enter the username and click on *show user info* (or hit Enter key).
 
-### `npm start`
+This proyect was initially a coding test for a job position, but I intent to continue working on it and add more features.
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Technologies used
+The app is only front-end based and retrieves the information from GitHub by making API calls. It uses the following technologies:
+ - **React**: front-end library.
+ - **Axios**: http requests to GitHub API.
+ - **Mobx**: state management.
+ - **Material UI**: UI components library.
+ - **Font Awesome**: SVG icons.
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+## Todo
+Here are a few improvements/features that I couldn't implement due to time constraints and that I wish to add in the future: 
+ - Implement responsiveness. Current it only shows correctly in desktop browser.
+ - Unit / integration testing.
+ - Better error handling.
+ - Improve styling by using **CSS-in-JS**.
+ - React Native App (*why not?*).
+ - Show user's activity, maybe by using **chart.js**.
+ - Overcome API calls limit.
 
-### `npm test`
+## Methodology
+My wokflow basically is the following: I usually try to define a MVP with the bare-minimun features, and then iterate from it, adding the basic features and finally the bonus features.
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+I organize myself with Trello. For this proyect I created and used the following board: [https://trello.com/b/td0S7f6h](https://trello.com/b/td0S7f6h).
 
-### `npm run build`
+On git, I use commits for each small feature and branches for the mayor ones.
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Try it
+You can use use it (here)[http://github-user-info.s3-website.eu-west-2.amazonaws.com/].
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+## Difficulties encountered
+Here are the main obstacles I found during the proyect:
+ - **My Github organizations are not showing in API calls**. by default, organizations members visibility is private, each user has to set each organization membership to public manually. [More info](https://help.github.com/en/articles/publicizing-or-hiding-organization-membership).
+ - **In order to use mobx-state-tree I have to use decorators**. And React doesn`t get along with decorators by default. [Here is how to use observable without decorators](https://mobx.js.org/best/decorators.html).
+ - **Github API only allows 60 requests per hour for unauthenticated users**. I cannot find a solution without exposing my keys in the code. I guess I should create a backend in order to handle authenticated API calls with GitHub, and retreive the data to the front.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Usage
 
-### `npm run eject`
+Once downloaded the files, run the following commands:
+```js
+npm i //installs all the required dependencies
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+npm start //runs the app in http://localhost:3000
+```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+### Build
+Run the following command to create a *build* folder with all the app files ready to deploy.
+```js
+npm run build
+```
+## Conclussions
+This has been a fun proyect, in order to make it I had to learn various technologies that I found very useful, mainly Mobx and Material UI. I intend to keep learning and improve my knowledge of both so I can use them in future projects.
